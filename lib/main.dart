@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tplmapsflutterplugin/TplMapsView.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,7 +11,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       home: MapScreen(),
     );
   }
@@ -40,10 +42,10 @@ class MapScreen extends StatelessWidget {
             bottom: 10,
             //left: 10,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Row(
-
+                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
                         onPressed: () => mapsController.addMarker(),
@@ -60,10 +62,11 @@ class MapScreen extends StatelessWidget {
                   ],
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
                       onPressed: () => mapsController.removeMarkers(),
-                      child: Text('Remove Markers'),
+                        child: Icon(Icons.location_off_sharp),
                     ),
                     ElevatedButton(
                       onPressed: () => mapsController.removePolyline(),
@@ -112,16 +115,18 @@ class MapsController extends GetxController {
     removePolyline();
     removeAllCircles();
 
+
+
     // Gestures Controls
     _controller.setZoomEnabled(true);
-    _controller.showBuildings(false);
-    _controller.showZoomControls(false);
-    _controller.setTrafficEnabled(false);
+    _controller.showBuildings(true);
+    _controller.showZoomControls(true);
+    _controller.setTrafficEnabled(true);
     _controller.enablePOIs(true);
     _controller.setMyLocationEnabled(true);
     _controller.myLocationButtonEnabled(true);
-    _controller.showsCompass(false);
-    _controller.setCameraPositionAnimated(33.69804797189, 73.0693006259, 14.0);
+    _controller.showsCompass(true);
+    _controller.setCameraPositionAnimated(33.705349, 73.069788, 14.0);
     _controller.setMapMode(MapMode.DEFAULT);
 
     // Setup Places API
@@ -140,7 +145,7 @@ class MapsController extends GetxController {
 
     // Setup Routing API
     TPLRoutingViewController tplRoutingViewController =
-    TPLRoutingViewController(24.820159, 67.123933, 24.830831, 67.080857 ,
+    TPLRoutingViewController(24.8607 , 67.0011, 33.705349, 73.069788 ,
           (tplRoutingCallBack) => {
 
         print(tplRoutingCallBack)
@@ -156,11 +161,15 @@ class MapsController extends GetxController {
   }
 
   void addPolyLine(){
-    _controller.addPolyLine(33.705349, 73.069788, 33.705349, 73.069788);
+    _controller.setUpPolyLine();
+    _controller.
+    addPolyLine(33.705349, 73.069788, 24.8607 , 67.0011);
+
   }
 
   void addCircle(){
-    _controller.addCircle(33.705349, 73.069788, 50.0);
+
+    _controller.addCircle(33.705349, 73.069788, 10.0);
   }
 
   void removeMarkers(){
@@ -175,3 +184,4 @@ class MapsController extends GetxController {
     _controller.removeAllCircles();
   }
 }
+
