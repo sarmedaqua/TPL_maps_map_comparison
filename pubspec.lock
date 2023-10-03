@@ -212,10 +212,10 @@ packages:
     dependency: "direct main"
     description:
       name: tplmapsflutterplugin
-      sha256: "64959437703618d2e840d0aa3bc932e7a1c8c6764ac8ad60c565bc8b6ca94c8a"
+      sha256: b6c3f7ffa76983b4b28d8443c4b5ca5dce476bbe48b8151c3dc8c30ce4e2f70b
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.9"
+    version: "1.5.1"
   typed_data:
     dependency: transitive
     description:
